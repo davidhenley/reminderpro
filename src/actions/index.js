@@ -3,5 +3,7 @@ import {
 } from './types';
 
 export const addReminder = (text) => {
-  return { type: ADD_REMINDER, payload: text };
+  if (text) {
+    return { type: ADD_REMINDER, payload: text };
+  }
 };
