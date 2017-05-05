@@ -1,6 +1,7 @@
 import {
   ADD_REMINDER,
-  DELETE_REMINDER
+  DELETE_REMINDER,
+  DELETE_ALL_REMINDERS
 } from './types';
 
 export const addReminder = (text, dueDate) => {
@@ -19,3 +20,7 @@ export const deleteReminder = (reminder) => {
     payload: reminder
   };
 };
+
+export const deleteAllReminders = () => {
+  return { type: DELETE_ALL_REMINDERS };
+}

@@ -22,6 +22,10 @@ class App extends Component {
     this.props.deleteReminder(reminder);
   }
 
+  deleteAllReminders() {
+    this.props.deleteAllReminders();
+  }
+
   renderReminders() {
     const { reminders } = this.props;
     return (
@@ -71,6 +75,10 @@ class App extends Component {
         </div>
 
         {this.renderReminders()}
+
+        <div className="btn btn-danger" onClick={() => this.deleteAllReminders()}>
+          Clear Reminders
+        </div>
       </div>
     );
   }
