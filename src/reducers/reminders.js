@@ -4,14 +4,15 @@ import {
 } from '../actions/types';
 
 export default (state = [], action) => {
-  console.log(action);
-
   switch(action.type) {
     case ADD_REMINDER:
       return [ ...state, action.payload ];
+
     case DELETE_REMINDER:
       return state.filter(reminder => reminder !== action.payload);
+
     default:
       return state;
   }
 };
+ 

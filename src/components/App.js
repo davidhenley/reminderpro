@@ -4,14 +4,18 @@ import { connect } from 'react-redux';
 
 class App extends Component {
   state = {
-    text: ''
+    text: '',
+    dueDate: ''
   }
 
   addReminder() {
-    if (this.state.text.trim()) {
-      this.props.addReminder(this.state.text.trim());
+    if (this.state.text.trim() && this.state.dueDate.trim()) {
+      this.props.addReminder(this.state.text.trim(), this.state.dueDate);
     }
-    this.setState({ text: '' });
+    this.setState({
+      text: '',
+      dueDate: ''
+    });
   }
 
   deleteReminder(reminder) {
@@ -24,7 +28,10 @@ class App extends Component {
       <ul className="list-group col-sm-4">
         {reminders.map((reminder, i) =>
           <li key={i} className="list-group-item">
-            <div className="list-item">{reminder.text}</div>
+            <div className="list-item">
+              <div>{reminder.text}</div>
+              <div><em>{reminder.dueDate}</em></div>
+            </div>
             <div className="list-item delete-button" onClick={() => this.deleteReminder(reminder)}>
               &#x2715;
             </div>
@@ -46,6 +53,12 @@ class App extends Component {
               placeholder="I have to..."
               value={this.state.text}
               onChange={evt => this.setState({ text: evt.target.value })}
+            />
+            <input
+              className="form-control"
+              type="date"
+              value={this.state.dueDate}
+              onChange={evt => this.setState({ dueDate: evt.target.value })}
             />
           </div>
 
