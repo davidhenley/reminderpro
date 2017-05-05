@@ -2,9 +2,13 @@ import {
   ADD_REMINDER,
   DELETE_REMINDER
 } from '../actions/types';
+import { REHYDRATE } from 'redux-persist/constants';
 
 export default (state = [], action) => {
   switch(action.type) {
+    case REHYDRATE:
+      return action.payload.reminders || [];
+
     case ADD_REMINDER:
       return [ ...state, action.payload ];
 
@@ -15,4 +19,3 @@ export default (state = [], action) => {
       return state;
   }
 };
- 
