@@ -14,12 +14,32 @@ class App extends Component {
     this.setState({ text: '' });
   }
 
+  deleteReminder(reminder) {
+    this.props.deleteReminder(reminder);
+  }
+
+  renderReminders() {
+    const { reminders } = this.props;
+    return (
+      <ul className="list-group col-sm-4">
+        {reminders.map((reminder, i) =>
+          <li key={i} className="list-group-item">
+            <div className="list-item">{reminder.text}</div>
+            <div className="list-item delete-button" onClick={() => this.deleteReminder(reminder)}>
+              &#x2715;
+            </div>
+          </li>
+        )}
+      </ul>
+    );
+  }
+
   render() {
     return (
       <div className="App">
         <div className="title">Reminder Pro</div>
 
-        <div className="form-inline">
+        <div className="form-inline reminder-form">
           <div className="form-group">
             <input
               className="form-control"
@@ -36,9 +56,15 @@ class App extends Component {
               Add Reminder
           </button>
         </div>
+
+        {this.renderReminders()}
       </div>
     );
   }
 }
 
-export default connect(null, actions)(App);
+const mapStateToProps = ({ reminders }) => {
+  return { reminders };
+};
+
+export default connect(mapStateToProps, actions)(App);

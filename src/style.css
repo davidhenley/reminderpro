@@ -1,0 +1,22 @@
+.App {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.App .title {
+  font-size: 26px;
+}
+
+.App input {
+  margin: 5px;
+}
+
+.App .reminder-form {
+  padding: 5px;
+}
+
+.App .delete-button {
+  cursor: pointer;
+}
